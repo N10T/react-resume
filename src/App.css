@@ -1,38 +1,124 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400&display=swap");
+
+:root {
+  --main-color: #39a4dd;
+  --second-color: #e4e4e4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#resume {
+  background-color: var(--second-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#profile {
+  grid-area: profile;
+  background-color: var(--main-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#profile .content {
+  padding: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+#profile .picture {
+  max-height: 300px;
+  width: 100%;
+}
+
+#work {
+  grid-area: work;
+}
+
+#education {
+  grid-area: education;
+}
+
+#hobbies {
+  grid-area: hobbies;
+}
+
+.flex {
+  display: flex;
+}
+
+.card {
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  background-color: white;
+}
+
+.card hr {
+  border-color: var(--main-color);
+}
+
+.card .icon {
+  /* padding: 16px; */
+  width: 50px;
+  align-self: flex-start;
+  /* height: auto; */
+  object-fit: contain;
+  margin-right: 16px;
+}
+
+.card .date {
+  font-weight: 100;
+  color: var(--main-color);
+}
+
+.card .content-block:not(.horizontal) .element {
+  margin-bottom: 16px;
+}
+
+.card .elements {
+  margin: 18px;
+}
+.card .content {
+  flex: 1;
+}
+.card .horizontal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card .horizontal .title {
+  margin: 0 8px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 4fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 8px;
+  grid-template-areas:
+    "profile work"
+    "profile education"
+    "profile hobbies";
+}
+
+@media screen and (max-width: 640px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 4px;
+    grid-template-areas:
+      "profile"
+      "work"
+      "education"
+      "hobbies";
   }
-  to {
-    transform: rotate(360deg);
+
+  .flex {
+    flex-direction: unset;
+  }
+
+  .horizontal {
+    flex-direction: column;
   }
 }
